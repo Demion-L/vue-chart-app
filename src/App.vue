@@ -1,28 +1,46 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <div>
+      <highcharts-component :chartOptions="chartOptions" chartId="myChart" />
+    </div>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HighchartsComponent from "./components/HighchartsComponent.vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: { HighchartsComponent },
+  data() {
+    return {
+      chartOptions: {
+        chart: {
+          type: "bar",
+        },
+        title: {
+          text: "Fruit Consumption",
+        },
+        xAxis: {
+          categories: ["Apples", "Bananas", "Oranges"],
+        },
+        yAxis: {
+          title: {
+            text: "Fruit eaten",
+          },
+        },
+        series: [
+          {
+            name: "Jane",
+            data: [1, 0, 4],
+          },
+          {
+            name: "John",
+            data: [5, 7, 3],
+          },
+        ],
+      },
+    };
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
