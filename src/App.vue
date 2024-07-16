@@ -1,46 +1,21 @@
 <template>
   <v-app>
-    <div>
-      <highcharts-component :chartOptions="chartOptions" chartId="myChart" />
-    </div>
+    <v-app-bar app color="deep-purple accent-4" dense dark>
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-toolbar-title>App Title</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn text to="/">Home</v-btn>
+      <v-btn text to="/dashboard">Dashboard</v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view></router-view>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import HighchartsComponent from "./components/HighchartsComponent.vue";
-
 export default {
   name: "App",
-  components: { HighchartsComponent },
-  data() {
-    return {
-      chartOptions: {
-        chart: {
-          type: "bar",
-        },
-        title: {
-          text: "Fruit Consumption",
-        },
-        xAxis: {
-          categories: ["Apples", "Bananas", "Oranges"],
-        },
-        yAxis: {
-          title: {
-            text: "Fruit eaten",
-          },
-        },
-        series: [
-          {
-            name: "Jane",
-            data: [1, 0, 4],
-          },
-          {
-            name: "John",
-            data: [5, 7, 3],
-          },
-        ],
-      },
-    };
-  },
 };
 </script>

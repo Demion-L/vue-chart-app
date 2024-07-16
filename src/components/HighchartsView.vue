@@ -7,6 +7,7 @@ vueCopy
 import Highcharts from "highcharts";
 
 export default {
+  name: "highcharts-view",
   props: {
     chartOptions: {
       type: Object,
