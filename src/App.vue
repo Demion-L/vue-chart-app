@@ -1,13 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="deep-purple accent-4" dense dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>App Title</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn text to="/">Home</v-btn>
-      <v-btn text to="/dashboard">Dashboard</v-btn>
-    </v-app-bar>
-
+    <MainNavbar />
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -15,7 +8,9 @@
 </template>
 
 <script>
+import MainNavbar from "@/components/MainNavbar";
 export default {
   name: "App",
+  components: { MainNavbar },
 };
 </script>

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-// import HighchartsComponent from "../components/HighchartsComponent.vue";
+import HighchartsComponent from "@/components/HighchartsView.vue";
 
 export default {
   name: "DashboardView",
