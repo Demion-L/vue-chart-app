@@ -1,7 +1,7 @@
 <template>
   <nav>
     <v-app-bar app color="green darken-4 accent-4" dense dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase blue--text text--lighten-5"
         ><span class="font-weight-light">smt</span
         ><span class="">info</span></v-toolbar-title
@@ -15,13 +15,19 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer> </v-navigation-drawer>
+    <v-navigation-drawer app class="teal darken-2" v-model="drawer">
+    </v-navigation-drawer>
   </nav>
 </template>
 
 <script>
 export default {
   name: "MainNavbar",
+  data() {
+    return {
+      drawer: false,
+    };
+  },
 };
 </script>
 <style lang="scss"></style>
