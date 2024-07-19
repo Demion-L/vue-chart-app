@@ -19,10 +19,10 @@ export default {
           type: "bar",
         },
         title: {
-          text: "Fruit Consumption",
+          text: "Comparison of character data",
         },
         xAxis: {
-          categories: ["Apples", "Bananas", "Oranges"],
+          categories: ["Height", "Mass", "Birth Year"],
         },
         yAxis: {
           title: {
