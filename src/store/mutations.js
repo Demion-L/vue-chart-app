@@ -1,6 +1,6 @@
 export default {
-  SET_CHARACTER(state, character) {
-    state.character = character;
+  SET_CHARACTERS(state, characters) {
+    state.characters = characters;
   },
   SET_LOADING(state, loading) {
     state.loading = loading;
