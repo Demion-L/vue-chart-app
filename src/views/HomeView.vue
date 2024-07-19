@@ -1,7 +1,19 @@
 <template>
-  <v-container>
-    <h1>Star Wars Characters</h1>
-    <v-row v-if="characters.length">
+  <v-container class="custom-background">
+    <h1 class="text-center primary--text shadowed-text">
+      Star Wars Characters
+    </h1>
+    <v-row justify="center" v-if="characters && characters.length">
+      <v-col cols="auto">
+        <v-pagination
+          v-model="currentPage"
+          :length="totalPages"
+          @input="onPageChange"
+          :total-visible="7"
+        ></v-pagination>
+      </v-col>
+    </v-row>
+    <v-row v-if="characters && characters.length">
       <v-col
         v-for="character in characters"
         :key="character.name"
@@ -9,67 +21,81 @@
         sm="6"
         md="4"
       >
-        <v-card>
-          <v-card-title>{{ character.name }}</v-card-title>
-          <v-card-text>
-            <v-list dense>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>Height:</v-list-item-title>
-                  <v-list-item-subtitle
-                    >{{ character.height }} cm</v-list-item-subtitle
-                  >
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>Mass:</v-list-item-title>
-                  <v-list-item-subtitle
-                    >{{ character.mass }} kg</v-list-item-subtitle
-                  >
-                </v-list-item-content>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>Birth Year:</v-list-item-title>
-                  <v-list-item-subtitle>{{
-                    character.birth_year
-                  }}</v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-card-text>
-        </v-card>
+        <character-card :character="character" />
       </v-col>
     </v-row>
+
     <v-progress-circular
-      v-else-if="isLoading"
+      v-if="isLoading"
       indeterminate
       color="primary"
     ></v-progress-circular>
     <v-alert v-else-if="error" type="error">{{ error }}</v-alert>
+    <v-alert v-else-if="!characters.length" type="info"
+      >No characters available.</v-alert
+    >
   </v-container>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import CharacterCard from "@/components/CharacterCard.vue";
 
 export default {
-  name: "HomePage",
+  name: "HomeView",
+  components: {
+    CharacterCard,
+  },
   computed: {
-    ...mapGetters(["getCharacters", "isLoading", "getError"]),
+    ...mapGetters([
+      "getCharacters",
+      "getCurrentPage",
+      "getTotalPages",
+      "isLoading",
+      "getError",
+    ]),
     characters() {
       return this.getCharacters;
+    },
+    currentPage: {
+      get() {
+        return this.getCurrentPage;
+      },
+      set(value) {
+        this.fetchCharacters(value);
+      },
+    },
+    totalPages() {
+      return this.getTotalPages;
     },
     error() {
       return this.getError;
     },
   },
-  mounted() {
+  created() {
     this.fetchCharacters();
   },
   methods: {
     ...mapActions(["fetchCharacters"]),
+    onPageChange(page) {
+      this.fetchCharacters(page);
+    },
   },
 };
 </script>
+
+<style scoped>
+.custom-background {
+  background: rgb(38, 249, 87);
+  background: linear-gradient(
+    128deg,
+    rgba(38, 249, 87, 1) 0%,
+    rgba(134, 187, 232, 1) 47%,
+    rgba(189, 25, 25, 1) 98%
+  );
+}
+
+.shadowed-text {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+</style>

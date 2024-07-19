@@ -1,5 +1,7 @@
 export default {
-  character: [],
+  characters: [],
+  currentPage: 1,
+  totalPages: 1,
   loading: false,
-  error: null,
-};
+  error: null
+}

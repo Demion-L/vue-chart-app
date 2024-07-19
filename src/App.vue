@@ -14,3 +14,9 @@ export default {
   components: { MainNavbar },
 };
 </script>
+
+<style scoped>
+.v-application {
+  background-color: #00ff00;
+}
+</style>
