@@ -1,6 +1,7 @@
 export default {
-  SET_CHARACTERS(state, characters) {
+  SET_CHARACTERS(state, { page, characters }) {
     state.characters = characters;
+    state.cache[page] = characters; 
   },
   SET_CURRENT_PAGE(state, page) {
     state.currentPage = page;

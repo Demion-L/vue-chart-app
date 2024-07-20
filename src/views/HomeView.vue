@@ -1,6 +1,6 @@
 <template>
   <v-container class="custom-background">
-    <h1 class="text-center primary--text shadowed-text">
+    <h1 class="primary--text text-center my-5 shadowed-text">
       Star Wars Characters
     </h1>
     <v-row justify="center" v-if="characters && characters.length">
@@ -12,6 +12,14 @@
           :total-visible="7"
         ></v-pagination>
       </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-container class="primary rounded">
+          <span class="font-weight-bold">Description: </span> please choose up
+          to 4 characters to compare the characteristics.
+        </v-container></v-col
+      >
     </v-row>
     <v-row v-if="characters && characters.length">
       <v-col
@@ -83,7 +91,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .custom-background {
   background: rgb(38, 249, 87);

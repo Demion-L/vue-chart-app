@@ -1,4 +1,3 @@
-vueCopy
 <template>
   <div :id="chartId"></div>
 </template>

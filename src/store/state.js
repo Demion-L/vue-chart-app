@@ -3,5 +3,7 @@ export default {
   currentPage: 1,
   totalPages: 1,
   loading: false,
-  error: null
-}
+  error: null,
+  cache: {},
+  selectedCharacters: [],
+};
