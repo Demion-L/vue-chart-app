@@ -1,8 +1,8 @@
 <template>
-  <v-card>
+  <v-card :class="{ lime: isSelected }" @click="$emit('click')">
     <v-card-title>{{ character.name }}</v-card-title>
     <v-card-text>
-      <v-list dense>
+      <v-list dense :class="{ lime: isSelected }">
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title>Height:</v-list-item-title>
@@ -38,6 +38,10 @@ export default {
   props: {
     character: {
       type: Object,
+      required: true,
+    },
+    isSelected: {
+      type: Boolean,
       required: true,
     },
   },

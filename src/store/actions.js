@@ -24,4 +24,15 @@ export default {
       commit("SET_LOADING", false);
     }
   },
+
+  toggleCharacterSelection({ commit, state }, character) {
+    const isSelected = state.selectedCharacters.some(
+      (char) => char.name === character.name
+    );
+    if (isSelected) {
+      commit("REMOVE_SELECTED_CHARACTER", character.name);
+    } else if (state.selectedCharacters.length < 4) {
+      commit("ADD_SELECTED_CHARACTER", character);
+    }
+  },
 };

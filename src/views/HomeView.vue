@@ -13,14 +13,45 @@
         ></v-pagination>
       </v-col>
     </v-row>
+
     <v-row>
       <v-col>
         <v-container class="primary rounded">
-          <span class="font-weight-bold">Description: </span> please choose up
-          to 4 characters to compare the characteristics.
-        </v-container></v-col
-      >
+          <p class="font-weight-bold secondary--text">
+            Description:
+            <span class="text-sm-body-2">
+              please choose up to 4 characters to compare the
+              characteristics.</span
+            >
+          </p>
+
+          <h3 class="secondary--text">
+            Selected Characters ({{ selectedCharacters.length }}/4):
+          </h3>
+          <div>
+            <v-chip
+              v-for="char in selectedCharacters"
+              :key="char.name"
+              class="ma-2"
+              close
+              @click:close="toggleSelection(char)"
+            >
+              {{ char.name }}
+            </v-chip>
+          </div>
+
+          <v-btn
+            v-if="selectedCharacters.length >= 2"
+            color="primary secondary--text"
+            class="mt-3"
+            @click="compareCharacters"
+          >
+            Compare Characters
+          </v-btn>
+        </v-container>
+      </v-col>
     </v-row>
+
     <v-row v-if="characters && characters.length">
       <v-col
         v-for="character in characters"
@@ -29,7 +60,11 @@
         sm="6"
         md="4"
       >
-        <character-card :character="character" />
+        <character-card
+          :character="character"
+          :isSelected="isCharacterSelected(character.name)"
+          @click.native="toggleSelection(character)"
+        />
       </v-col>
     </v-row>
 
@@ -57,13 +92,20 @@ export default {
   computed: {
     ...mapGetters([
       "getCharacters",
+      "getSelectedCharacters",
+      "isCharacterSelected",
       "getCurrentPage",
       "getTotalPages",
       "isLoading",
       "getError",
     ]),
     characters() {
-      return this.getCharacters;
+      return this.getCharacters || [];
+    },
+    selectedCharacters() {
+      console.log("selected", this.getSelectedCharacters);
+
+      return this.getSelectedCharacters;
     },
     currentPage: {
       get() {
@@ -83,10 +125,18 @@ export default {
   created() {
     this.fetchCharacters();
   },
+
   methods: {
-    ...mapActions(["fetchCharacters"]),
+    ...mapActions(["fetchCharacters", "toggleCharacterSelection"]),
     onPageChange(page) {
       this.fetchCharacters(page);
+    },
+    toggleSelection(character) {
+      this.toggleCharacterSelection(character);
+    },
+    compareCharacters() {
+      // This method will be implemented in the new component
+      console.log("Comparing characters:", this.selectedCharacters);
     },
   },
 };
