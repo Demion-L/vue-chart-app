@@ -1,15 +1,19 @@
 <template>
   <v-container>
+    <h1 class="mb-4">Dashboard</h1>
+    <selected-characters-list />
     <highcharts-component :chartOptions="chartOptions" chartId="myChart" />
   </v-container>
 </template>
 
 <script>
+import SelectedCharactersList from "@/components/SelectedCharactersList.vue";
 import HighchartsComponent from "@/components/HighchartsView.vue";
 
 export default {
   name: "DashboardView",
   components: {
+    SelectedCharactersList,
     HighchartsComponent,
   },
   data() {
@@ -41,6 +45,9 @@ export default {
         ],
       },
     };
+  },
+  getters: {
+    getSelectedCharacters: (state) => state.getSelectedCharacters,
   },
 };
 </script>
