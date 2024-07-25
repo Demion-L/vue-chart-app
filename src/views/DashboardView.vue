@@ -1,53 +1,40 @@
 <template>
-  <v-container>
-    <h1 class="mb-4">Dashboard</h1>
-    <selected-characters-list />
-    <highcharts-component :chartOptions="chartOptions" chartId="myChart" />
+  <v-container class="fill-height align-center justify-center">
+    <h1 v-if="hasEnoughCharacters" class="mb-4 primary--text shadowed-text">
+      Dashboard
+    </h1>
+    <v-alert v-if="!hasEnoughCharacters" type="warning">
+      Please select at least two characters from the
+      <v-btn text color="primary" @click="goToHome">home page</v-btn>.
+    </v-alert>
+    <template v-else>
+      <selected-characters-list />
+      <character-comparsion-chart />
+    </template>
   </v-container>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import SelectedCharactersList from "@/components/SelectedCharactersList.vue";
-import HighchartsComponent from "@/components/HighchartsView.vue";
+import CharacterComparsionChart from "@/components/CharacterComparsionChart.vue";
 
 export default {
   name: "DashboardView",
   components: {
     SelectedCharactersList,
-    HighchartsComponent,
+    CharacterComparsionChart,
   },
-  data() {
-    return {
-      chartOptions: {
-        chart: {
-          type: "bar",
-        },
-        title: {
-          text: "Comparison of character data",
-        },
-        xAxis: {
-          categories: ["Height", "Mass", "Birth Year"],
-        },
-        yAxis: {
-          title: {
-            text: "Fruit eaten",
-          },
-        },
-        series: [
-          {
-            name: "Jane",
-            data: [1, 0, 4],
-          },
-          {
-            name: "John",
-            data: [5, 7, 3],
-          },
-        ],
-      },
-    };
+  computed: {
+    ...mapGetters(["getSelectedCharacters"]),
+    hasEnoughCharacters() {
+      return this.getSelectedCharacters.length >= 2;
+    },
   },
-  getters: {
-    getSelectedCharacters: (state) => state.getSelectedCharacters,
+  methods: {
+    goToHome() {
+      this.$router.push({ name: "Home" });
+    },
   },
 };
 </script>

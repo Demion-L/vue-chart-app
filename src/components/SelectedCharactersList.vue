@@ -1,7 +1,7 @@
 <template>
-  <v-container>
-    <h2 class="mb-4">Selected Characters</h2>
-    <v-list v-if="selectedCharacters.length">
+  <v-container class="custom-background rounded mb-4">
+    <h2 class="mb-4 primary--text shadowed-text">Selected Characters</h2>
+    <v-list class="rounded" v-if="selectedCharacters.length">
       <v-list-item
         v-for="character in selectedCharacters"
         :key="character.name"

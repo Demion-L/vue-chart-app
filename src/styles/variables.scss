@@ -1,0 +1,13 @@
+.custom-background {
+  background: rgb(38, 249, 87);
+  background: linear-gradient(
+    128deg,
+    rgba(38, 249, 87, 1) 0%,
+    rgba(134, 187, 232, 1) 47%,
+    rgba(189, 25, 25, 1) 98%
+  );
+}
+
+.shadowed-text {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}

@@ -105,7 +105,7 @@ export default {
 };
 </script>
 <style scoped>
-.custom-background {
+/* .custom-background {
   background: rgb(38, 249, 87);
   background: linear-gradient(
     128deg,
@@ -117,5 +117,5 @@ export default {
 
 .shadowed-text {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
+} */
 </style>

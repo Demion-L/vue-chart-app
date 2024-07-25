@@ -49,9 +49,8 @@ export default {
       this.toggleCharacterSelection(character);
     },
     compareCharacters() {
-      console.log("Comparing characters:", this.selectedCharacters);
-
-      this.$emit("compare", this.selectedCharacters);
+      // this.$emit("compare", this.selectedCharacters);
+      this.$router.push({ name: "Dashboard" });
     },
   },
 };
