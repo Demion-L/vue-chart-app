@@ -16,15 +16,22 @@
     </v-app-bar>
 
     <v-navigation-drawer app class="teal darken-2" v-model="drawer">
-      <v-list>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon color="primary" left>mdi-home-circle</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title class="primary--text">Home</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+      <v-list class="primary--text">
+        <v-list-item
+          v-for="link in links"
+          :key="link.text"
+          router
+          :to="link.route"
+        >
+          <v-list-item-action>
+            <v-icon color="primary" left>{{ link.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title class="primary--text">{{
+              link.text
+            }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
   </nav>
@@ -39,6 +46,11 @@ export default {
       links: [
         { icon: "mdi-home-circle", text: "Home", route: "/" },
         { icon: "mdi-view-dashboard", text: "Dashboard", route: "/dashboard" },
+        {
+          icon: "mdi-chart-box-multiple-outline",
+          text: "ChartView",
+          route: "/chartview",
+        },
         { icon: "mdi-exit-to-app", text: "Logout", route: "/logaut" },
       ],
     };
