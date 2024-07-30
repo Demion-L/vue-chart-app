@@ -1,6 +1,8 @@
 <template>
-  <v-card>
-    <v-card-title>Select Chart Type</v-card-title>
+  <v-card class="mb-4 custom-background">
+    <v-card-title class="primary--text text-center my-5 shadowed-text"
+      >Select Chart Type</v-card-title
+    >
     <v-card-text>
       <v-radio-group v-model="selectedChartType" @change="applySelection">
         <v-radio label="Line Chart" value="line"></v-radio>

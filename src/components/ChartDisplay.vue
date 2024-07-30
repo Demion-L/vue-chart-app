@@ -1,7 +1,9 @@
 <!-- ChartDisplay.vue -->
 <template>
-  <v-card>
-    <v-card-title>Sensor Data Chart</v-card-title>
+  <v-card class="custom-background">
+    <v-card-title class="primary--text text-center my-5 shadowed-text"
+      >Sensor Data Chart</v-card-title
+    >
     <v-card-text>
       <div id="chart"></div>
     </v-card-text>

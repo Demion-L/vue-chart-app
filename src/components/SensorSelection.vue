@@ -1,6 +1,8 @@
 <template>
-  <v-card>
-    <v-card-title>Select Sensors</v-card-title>
+  <v-card class="mb-4 custom-background">
+    <v-card-title class="primary--text text-center my-5 shadowed-text"
+      >Select Sensors</v-card-title
+    >
     <v-card-text>
       <v-checkbox
         v-for="sensor in sensors"

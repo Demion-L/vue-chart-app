@@ -1,17 +1,12 @@
 <template>
   <v-app>
     <v-container>
-      <h1>Sensor Data Visualization</h1>
-      <sensor-selection
-        @sensors-selected="updateSelectedSensors"
-      ></sensor-selection>
-      <chart-type-selection
-        @chart-type-selected="updateChartType"
-      ></chart-type-selection>
-      <chart-display
-        :sensors="selectedSensors"
-        :chartType="chartType"
-      ></chart-display>
+      <h1 class="primary--text text-center my-5 shadowed-text">
+        Sensor Data Visualization
+      </h1>
+      <sensor-selection @sensors-selected="updateSelectedSensors" />
+      <chart-type-selection @chart-type-selected="updateChartType" />
+      <chart-display :sensors="selectedSensors" :chartType="chartType" />
     </v-container>
   </v-app>
 </template>
