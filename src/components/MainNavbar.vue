@@ -7,12 +7,12 @@
         ><span class="font-weight-light">info</span></v-toolbar-title
       >
       <v-spacer></v-spacer>
-      <v-btn class="mr-2" text to="/">Home</v-btn>
-      <v-btn text to="/dashboard">Dashboard</v-btn>
-      <v-btn text>
-        <span>Sign Out</span>
-        <v-icon right color="primary"> mdi-exit-to-app</v-icon>
-      </v-btn>
+
+      <nav-button
+        v-for="(button, index) in buttons"
+        :key="index"
+        v-bind="button"
+      />
     </v-app-bar>
 
     <v-navigation-drawer app class="teal darken-2" v-model="drawer">
@@ -38,22 +38,37 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
+import NavButton from "@/components/UI/NavButton.vue";
+
 export default {
   name: "MainNavbar",
+  components: {
+    NavButton,
+  },
   data() {
     return {
       drawer: false,
-      links: [
-        { icon: "mdi-home-circle", text: "Home", route: "/" },
-        { icon: "mdi-view-dashboard", text: "Dashboard", route: "/dashboard" },
-        {
-          icon: "mdi-chart-box-multiple-outline",
-          text: "ChartView",
-          route: "/chartview",
-        },
-        { icon: "mdi-exit-to-app", text: "Logout", route: "/logaut" },
-      ],
     };
+  },
+  computed: {
+    ...mapGetters(["navLinks", "navButtons"]),
+    links() {
+      return this.navLinks;
+    },
+    buttons() {
+      return this.navButtons.map((button) =>
+        button.onClick === "signout"
+          ? { ...button, onClick: this.signOut }
+          : button
+      );
+    },
+  },
+  methods: {
+    signOut() {
+      console.log("Signing out");
+    },
   },
 };
 </script>
